@@ -67,7 +67,7 @@ SnakeGraphic.prototype.draw = function(snake) {
   //draw the new snake
   this.oldSnake = snake.slice();
   for (var i = 0; i < snake.length; i++) {
-    this.fillCell(snake[i],'white');
+    this.fillCell(snake[i],'green');
   }
   //Draw the apple
   this.fillCell(this.apple, 'red');
