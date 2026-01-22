@@ -26,7 +26,7 @@ SnakeGraphic.prototype.reset = function() {
     this.blockSize.y * this.field.y + this.offset
   );
   this.ctx.strokeStyle = 'yellow';
-  this.ctx.lineWidth = 2;
+  this.ctx.lineWidth = 500;
   this.ctx.strokeRect(
     this.offset / 2 - 1,
     this.offset / 2 - 1,
@@ -47,11 +47,19 @@ SnakeGraphic.prototype.setApple = function(pos) {
   this.apple = pos;
 };
 
+/**
+ * Set the bomb position
+ * @param {{x: Number, y: Number}} pos, position of where to set the apple
+ */
+SnakeGraphic.prototype.setBomb = function(pos) {
+  this.bomb = pos;
+};
+
 SnakeGraphic.prototype.setScore = function(score) {
   this.ctx.font = '30px Arial';
   this.ctx.fillStyle = 'black';
   this.ctx.fillRect(0, 0, 200, 30);
-  this.ctx.fillStyle = 'yellow';
+  this.ctx.fillStyle = 'white';
   this.ctx.fillText(score, 10, 30);
 };
 
@@ -71,6 +79,8 @@ SnakeGraphic.prototype.draw = function(snake) {
   }
   //Draw the apple
   this.fillCell(this.apple, 'red');
+  //Draw the bomb
+  this.fillCell(this.bomb, 'yellow');
 };
 
 /**

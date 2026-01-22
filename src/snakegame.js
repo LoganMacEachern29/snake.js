@@ -36,6 +36,11 @@ Game.prototype.generateRandomApple = function() {
     y: Math.floor(Math.random() * this.field.y)
   };
   this.graphic.setApple(this.apple);
+  this.bomb = {
+    x: Math.floor(Math.random() * this.field.x),
+    y: Math.floor(Math.random() * this.field.y)
+  };
+  this.graphic.setBomb(this.bomb);
 };
 
 Game.prototype.keypress = function(ev, self) {
@@ -61,7 +66,7 @@ Game.prototype.keypress = function(ev, self) {
 
 Game.prototype.update = function(self) {
   self.snake.move();
-  if (self.snake.isDead()) {
+  if (self.snake.isDead() || self.snake.isOn(self.bomb)) {
     self.score = 0;
     self.graphic.reset();
     self.snake.respawn();
@@ -72,5 +77,5 @@ Game.prototype.update = function(self) {
     self.score += 100;
     self.graphic.setScore(self.score);
   }
-  self.graphic.draw(self.snake.get());
+  self.graphic.draw(self.snake.get()); 
 };
